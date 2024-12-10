@@ -28,24 +28,23 @@ export const withStyle = {
 export type IntrospectStatus = "fetching" | "done";
 export type IntrospectStage = "tables" | "columns" | "enums" | "indexes" | "policies" | "checks" | "fks" | "views";
 
-interface RandomUUIDOptions {
-  /**
-   * By default, to improve performance,
-   * Node.js will pre-emptively generate and persistently cache enough
-   * random data to generate up to 128 random UUIDs. To generate a UUID
-   * without using the cache, set `disableEntropyCache` to `true`.
-   *
-   * @default `false`
-   */
-  disableEntropyCache?: boolean | undefined;
-}
+// interface RandomUUIDOptions {
+//   /**
+//    * By default, to improve performance,
+//    * Node.js will pre-emptively generate and persistently cache enough
+//    * random data to generate up to 128 random UUIDs. To generate a UUID
+//    * without using the cache, set `disableEntropyCache` to `true`.
+//    *
+//    * @default `false`
+//    */
+//   disableEntropyCache?: boolean | undefined;
+// }
 
-type UUID = `${string}-${string}-${string}-${string}-${string}`;
-
-export function randomUUID(options?: RandomUUIDOptions): UUID {
-  // return `${string}-${string}-${string}-${string}-${string}`;
-  return "50cd48fa-3a5b-4e28-b09d-fabc4fac3998";
-}
+// type UUID = `${string}-${string}-${string}-${string}-${string}`;
+// export function randomUUID(options?: RandomUUIDOptions): UUID {
+//   // return `${string}-${string}-${string}-${string}-${string}`;
+//   return "50cd48fa-3a5b-4e28-b09d-fabc4fac3998";
+// }
 
 export function camelCase(input: string) {
   return camelcase(String(input));

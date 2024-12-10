@@ -63,34 +63,3 @@ export const prepareFromExports = (exports: Record<string, unknown>) => {
 
   return { tables, enums, schemas, sequences, views, matViews, roles, policies };
 };
-
-// export const prepareFromPgImports = async (imports: string[]) => {
-// 	const tables: AnyPgTable[] = [];
-// 	const enums: PgEnum<any>[] = [];
-// 	const schemas: PgSchema[] = [];
-// 	const sequences: PgSequence[] = [];
-// 	const views: PgView[] = [];
-// 	const roles: PgRole[] = [];
-// 	const policies: PgPolicy[] = [];
-// 	const matViews: PgMaterializedView[] = [];
-//
-// 	const { unregister } = await safeRegister();
-// 	for (let i = 0; i < imports.length; i++) {
-// 		const it = imports[i];
-//
-// 		const i0: Record<string, unknown> = require(`${it}`);
-// 		const prepared = prepareFromExports(i0);
-//
-// 		tables.push(...prepared.tables);
-// 		enums.push(...prepared.enums);
-// 		schemas.push(...prepared.schemas);
-// 		sequences.push(...prepared.sequences);
-// 		views.push(...prepared.views);
-// 		matViews.push(...prepared.matViews);
-// 		roles.push(...prepared.roles);
-// 		policies.push(...prepared.policies);
-// 	}
-// 	unregister();
-//
-// 	return { tables: Array.from(new Set(tables)), enums, schemas, sequences, views, matViews, roles, policies };
-// };
