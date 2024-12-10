@@ -23,7 +23,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest tests",
-    "prettier-check": "prettier tests --write"
+    "prettier-check": "prettier src --check"
   },
   "peerDependencies": {
     "@ewoudenberg/difflib": "^0.1.0",

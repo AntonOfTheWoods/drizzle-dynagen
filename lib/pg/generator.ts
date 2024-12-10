@@ -48,7 +48,6 @@ export async function generateSql(dbObjects: DbSchemaElements, casing?: CasingTy
 
   const { version: _v2, dialect: _d2, ...rest2 } = serialized2;
 
-  console.log("my snapshot ser2", serialized2);
   const sch2 = {
     version: "7",
     dialect: "postgresql",

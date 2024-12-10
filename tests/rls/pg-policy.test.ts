@@ -804,15 +804,13 @@ test("create table with rls enabled", async () => {
     }).enableRLS(),
   };
 
-  const { statements, sqlStatements } = await diffTestSchemas(schema1, schema2, []);
+  const { sqlStatements } = await diffTestSchemas(schema1, schema2, []);
 
   expect(sqlStatements).toStrictEqual([
     `CREATE TABLE IF NOT EXISTS "users" (\n\t"id" integer PRIMARY KEY NOT NULL\n);
 `,
     'ALTER TABLE "users" ENABLE ROW LEVEL SECURITY;',
   ]);
-
-  console.log(statements);
 });
 
 test("enable rls force", async () => {

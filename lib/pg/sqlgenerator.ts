@@ -214,7 +214,9 @@ class PgCreatePolicyConvertor extends Convertor {
       ?.map((v) => (["current_user", "current_role", "session_user", "public"].includes(v) ? v : `"${v}"`))
       .join(", ");
 
-    return `CREATE POLICY "${policy.name}" ON ${tableNameWithSchema} AS ${policy.as?.toUpperCase()} FOR ${policy.for?.toUpperCase()} TO ${policyToPart}${usingPart}${withCheckPart};`;
+    return `CREATE POLICY "${
+      policy.name
+    }" ON ${tableNameWithSchema} AS ${policy.as?.toUpperCase()} FOR ${policy.for?.toUpperCase()} TO ${policyToPart}${usingPart}${withCheckPart};`;
   }
 }
 
@@ -267,14 +269,14 @@ class PgAlterPolicyConvertor extends Convertor {
     const usingPart = newPolicy.using
       ? ` USING (${newPolicy.using})`
       : oldPolicy.using
-        ? ` USING (${oldPolicy.using})`
-        : "";
+      ? ` USING (${oldPolicy.using})`
+      : "";
 
     const withCheckPart = newPolicy.withCheck
       ? ` WITH CHECK (${newPolicy.withCheck})`
       : oldPolicy.withCheck
-        ? ` WITH CHECK  (${oldPolicy.withCheck})`
-        : "";
+      ? ` WITH CHECK  (${oldPolicy.withCheck})`
+      : "";
 
     return `ALTER POLICY "${oldPolicy.name}" ON ${tableNameWithSchema} TO ${newPolicy.to}${usingPart}${withCheckPart};`;
   }
@@ -297,7 +299,9 @@ class PgCreateIndPolicyConvertor extends Convertor {
       ?.map((v) => (["current_user", "current_role", "session_user", "public"].includes(v) ? v : `"${v}"`))
       .join(", ");
 
-    return `CREATE POLICY "${policy.name}" ON ${policy.on} AS ${policy.as?.toUpperCase()} FOR ${policy.for?.toUpperCase()} TO ${policyToPart}${usingPart}${withCheckPart};`;
+    return `CREATE POLICY "${policy.name}" ON ${
+      policy.on
+    } AS ${policy.as?.toUpperCase()} FOR ${policy.for?.toUpperCase()} TO ${policyToPart}${usingPart}${withCheckPart};`;
   }
 }
 
@@ -332,14 +336,14 @@ class PgAlterIndPolicyConvertor extends Convertor {
     const usingPart = newPolicy.using
       ? ` USING (${newPolicy.using})`
       : oldPolicy.using
-        ? ` USING (${oldPolicy.using})`
-        : "";
+      ? ` USING (${oldPolicy.using})`
+      : "";
 
     const withCheckPart = newPolicy.withCheck
       ? ` WITH CHECK (${newPolicy.withCheck})`
       : oldPolicy.withCheck
-        ? ` WITH CHECK  (${oldPolicy.withCheck})`
-        : "";
+      ? ` WITH CHECK  (${oldPolicy.withCheck})`
+      : "";
 
     return `ALTER POLICY "${oldPolicy.name}" ON ${oldPolicy.on} TO ${newPolicy.to}${usingPart}${withCheckPart};`;
   }
@@ -415,11 +419,9 @@ class PgCreateTableConvertor extends Convertor {
             unsquashedIdentity.increment ? ` INCREMENT BY ${unsquashedIdentity.increment}` : ""
           }${unsquashedIdentity.minValue ? ` MINVALUE ${unsquashedIdentity.minValue}` : ""}${
             unsquashedIdentity.maxValue ? ` MAXVALUE ${unsquashedIdentity.maxValue}` : ""
-          }${
-            unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""
-          }${unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""}${
-            unsquashedIdentity.cycle ? ` CYCLE` : ""
-          })`
+          }${unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""}${
+            unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""
+          }${unsquashedIdentity.cycle ? ` CYCLE` : ""})`
         : "";
 
       statement +=
@@ -918,11 +920,9 @@ class PgAlterTableAlterColumnSetGenerated extends Convertor {
           unsquashedIdentity.increment ? ` INCREMENT BY ${unsquashedIdentity.increment}` : ""
         }${unsquashedIdentity.minValue ? ` MINVALUE ${unsquashedIdentity.minValue}` : ""}${
           unsquashedIdentity.maxValue ? ` MAXVALUE ${unsquashedIdentity.maxValue}` : ""
-        }${
-          unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""
-        }${unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""}${
-          unsquashedIdentity.cycle ? ` CYCLE` : ""
-        })`
+        }${unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""}${
+          unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""
+        }${unsquashedIdentity.cycle ? ` CYCLE` : ""})`
       : "";
 
     return `ALTER TABLE ${tableNameWithSchema} ALTER COLUMN "${columnName}" ADD${identityStatement};`;
@@ -1522,11 +1522,9 @@ class PgAlterTableAddColumnConvertor extends Convertor {
           unsquashedIdentity.increment ? ` INCREMENT BY ${unsquashedIdentity.increment}` : ""
         }${unsquashedIdentity.minValue ? ` MINVALUE ${unsquashedIdentity.minValue}` : ""}${
           unsquashedIdentity.maxValue ? ` MAXVALUE ${unsquashedIdentity.maxValue}` : ""
-        }${
-          unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""
-        }${unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""}${
-          unsquashedIdentity.cycle ? ` CYCLE` : ""
-        })`
+        }${unsquashedIdentity.startWith ? ` START WITH ${unsquashedIdentity.startWith}` : ""}${
+          unsquashedIdentity.cache ? ` CACHE ${unsquashedIdentity.cache}` : ""
+        }${unsquashedIdentity.cycle ? ` CYCLE` : ""})`
       : "";
 
     const generatedStatement = generated ? ` GENERATED ALWAYS AS (${generated?.as}) STORED` : "";
@@ -2379,10 +2377,11 @@ class PgAlterTableAlterCompositePrimaryKeyConvertor extends Convertor {
       ? `"${statement.schema}"."${statement.tableName}"`
       : `"${statement.tableName}"`;
 
-    console.log(statement.oldConstraintName, statement.newConstraintName);
-    return `ALTER TABLE ${tableNameWithSchema} DROP CONSTRAINT "${statement.oldConstraintName}";\n${BREAKPOINT}ALTER TABLE ${tableNameWithSchema} ADD CONSTRAINT "${statement.newConstraintName}" PRIMARY KEY("${newColumns.join(
-      '","',
-    )}");`;
+    return `ALTER TABLE ${tableNameWithSchema} DROP CONSTRAINT "${
+      statement.oldConstraintName
+    }";\n${BREAKPOINT}ALTER TABLE ${tableNameWithSchema} ADD CONSTRAINT "${
+      statement.newConstraintName
+    }" PRIMARY KEY("${newColumns.join('","')}");`;
   }
 }
 

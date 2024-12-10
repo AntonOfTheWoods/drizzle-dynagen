@@ -44,7 +44,6 @@ type UUID = `${string}-${string}-${string}-${string}-${string}`;
 
 export function randomUUID(options?: RandomUUIDOptions): UUID {
   // return `${string}-${string}-${string}-${string}-${string}`;
-  console.log("Got options", options);
   return "50cd48fa-3a5b-4e28-b09d-fabc4fac3998";
 }
 
