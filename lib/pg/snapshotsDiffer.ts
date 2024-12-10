@@ -90,7 +90,6 @@ import {
 
 import { mapEntries, mapKeys, mapValues } from "./global";
 import { Named, NamedWithSchema } from "./lib";
-// import { MySqlSchema, MySqlSchemaSquashed, MySqlSquasher, ViewSquashed } from './serializer/mysqlSchema';
 import {
   mergedViewWithOption,
   PgSchema,
@@ -103,7 +102,6 @@ import {
   sequenceSquashed,
   View,
 } from "./pgSchema";
-// import { SQLiteSchema, SQLiteSchemaSquashed, SQLiteSquasher, View as SqliteView } from './serializer/sqliteSchema';
 import { copy, prepareMigrationMeta } from "./utils";
 
 const makeChanged = <T extends ZodTypeAny>(schema: T) => {
