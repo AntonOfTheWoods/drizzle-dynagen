@@ -28,6 +28,8 @@ import {
   viewsResolver,
 } from "./resolvers";
 
+export { fromJson } from "./sqlgenerator";
+
 export type PostgresSchema = Record<
   string,
   PgTable<any> | PgEnum<any> | PgSchema | PgSequence | PgView | PgMaterializedView | PgRole | PgPolicy
