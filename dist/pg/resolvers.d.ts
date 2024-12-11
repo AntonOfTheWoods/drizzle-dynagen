@@ -1,0 +1,12 @@
+import { Named } from './lib';
+import { Policy, Role, View } from './pgSchema';
+import { ColumnsResolverInput, Column, ColumnsResolverOutput, ResolverInput, ResolverOutput, ResolverOutputWithMoved, Sequence, Enum, Table, TablePolicyResolverInput, TablePolicyResolverOutput, PolicyResolverInput, PolicyResolverOutput, RolesResolverInput, RolesResolverOutput } from './snapshotsDiffer';
+export declare const columnsResolver: (renames: Set<string>) => (input: ColumnsResolverInput<Column>) => Promise<ColumnsResolverOutput<Column>>;
+export declare const schemasResolver: (renames: Set<string>) => (input: ResolverInput<Named>) => Promise<ResolverOutput<Named>>;
+export declare const sequencesResolver: (renames: Set<string>) => (input: ResolverInput<Sequence>) => Promise<ResolverOutputWithMoved<Sequence>>;
+export declare const enumsResolver: (renames: Set<string>) => (input: ResolverInput<Enum>) => Promise<ResolverOutputWithMoved<Enum>>;
+export declare const tablesResolver: (renames: Set<string>) => (input: ResolverInput<Table>) => Promise<ResolverOutputWithMoved<Table>>;
+export declare const policyResolver: (renames: Set<string>) => (input: TablePolicyResolverInput<Policy>) => Promise<TablePolicyResolverOutput<Policy>>;
+export declare const indPolicyResolver: (renames: Set<string>) => (input: PolicyResolverInput<Policy>) => Promise<PolicyResolverOutput<Policy>>;
+export declare const rolesResolver: (renames: Set<string>) => (input: RolesResolverInput<Role>) => Promise<RolesResolverOutput<Role>>;
+export declare const viewsResolver: (renames: Set<string>) => (input: ResolverInput<View>) => Promise<ResolverOutputWithMoved<View>>;
