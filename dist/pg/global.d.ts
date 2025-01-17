@@ -1,0 +1,31 @@
+import { AnyPgTable, PgEnum, PgMaterializedView, PgPolicy, PgRole, PgSchema, PgSequence, PgView } from 'drizzle-orm/pg-core';
+import { CasingType } from './lib';
+export declare const originUUID = "00000000-0000-0000-0000-000000000000";
+export declare const snapshotVersion = "7";
+export type DbSchemaElements = {
+    tables?: AnyPgTable[];
+    schemas?: PgSchema[];
+    enums?: PgEnum<any>[];
+    sequences?: PgSequence[];
+    roles?: PgRole[];
+    policies?: PgPolicy[];
+    views?: PgView[];
+    materializedViews?: PgMaterializedView[];
+    casing?: CasingType;
+};
+export declare const EMPTY_SQUASHED_SCHEMA: {
+    readonly version: "7";
+    readonly dialect: "postgresql";
+    readonly tables: {};
+    readonly enums: {};
+    readonly schemas: {};
+    readonly views: {};
+    readonly policies: {};
+    readonly sequences: {};
+    readonly roles: {};
+};
+export declare const EMPTY_RENAMES: Set<never>;
+export declare const mapValues: <IN, OUT>(obj: Record<string, IN>, map: (input: IN) => OUT) => Record<string, OUT>;
+export declare const mapKeys: <T>(obj: Record<string, T>, map: (key: string, value: T) => string) => Record<string, T>;
+export declare const mapEntries: <T>(obj: Record<string, T>, map: (key: string, value: T) => [string, T]) => Record<string, T>;
+export declare const customMapEntries: <TReturn, T = any>(obj: Record<string, T>, map: (key: string, value: T) => [string, TReturn]) => Record<string, TReturn>;
